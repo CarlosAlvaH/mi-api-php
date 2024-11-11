@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
-include_once '../../config/db.php';
-include_once '../../objects/mascota.php';
+include_once '../config/db.php';
+include_once '../src/objects/mascota.php';
 
 $database = getConnection();
 $mascota = new Mascota($database);
@@ -34,6 +34,8 @@ switch ($method) {
                     extract($row);
                     $mascota_item = array(
                         "idMascota" => $idMascota,
+						"idCliente" => $idCli,
+						"idCategoria" => $idCat,
                         "nombre" => $nombre,
                         "raza" => $raza,
                         "sexo" => $sexo,

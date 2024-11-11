@@ -1,19 +1,20 @@
 <?php
-// Configuración de la base de datos
-define('DB_SERVER', 'bce6vf4tu3cmol22tsge-mysql.services.clever-cloud.com');
-define('DB_USERNAME', 'uxxvwebuxr4dzmz5');
-define('DB_PASSWORD', 'qNN2czxF2IBpbEnXHN5K');
-define('DB_NAME', 'bce6vf4tu3cmol22tsge');
+class Database {
+    private $host = getenv('DB_HOST');
+    private $db_name = getenv('DB_NAME');
+    private $username = getenv('DB_USER');
+    private $password = getenv('DB_PASSWORD');
+    public $conn;
 
-// Crear la conexión
-function getConnection() {
-    $connection = null;
-    try {
-        $connection = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo "Error de conexión: " . $e->getMessage();
+    public function getConnection(){
+        $this->conn = null;
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->exec("set names utf8");
+        } catch(PDOException $exception){
+            echo "Error de conexión: " . $exception->getMessage();
+        }
+        return $this->conn;
     }
-    return $connection;
 }
 ?>

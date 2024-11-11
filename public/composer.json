@@ -1,0 +1,13 @@
+{
+    "name": "solrac/api-basedatos",
+    "description": "Api para conectar pase de datos local android con una en linea mysql",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Solrac\\ApiBasedatos\\": "src/"
+        }
+    },
+    "minimum-stability": "beta",
+    "require": {}
+}
